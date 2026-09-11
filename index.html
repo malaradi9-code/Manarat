@@ -26,6 +26,9 @@
   --ac:#AFDDFF;
   --ac2:#c8e8ff;
   --acg:rgba(175,221,255,.08);
+  --ac-rgb:175,221,255;
+  --fg-rgb:255,255,255;
+  --bg-rgb:0,0,0;
   --grn:#2ecc8f;
   --red:#e05c5c;
   --amb:#f0a04e;
@@ -38,10 +41,14 @@
   --ease-std: cubic-bezier(0.4,0,0.2,1);
 }
 .lm{
-  --bg:#000;--bg2:#080808;--bg3:#0f0f0f;--bg4:#141414;
-  --bdr:rgba(255,255,255,0.06);--bdr2:rgba(255,255,255,0.11);
-  --tx:#fff;--tx2:rgba(255,255,255,0.62);--tx3:rgba(255,255,255,0.32);
-  --ac:#AFDDFF;--ac2:#c8e8ff;--acg:rgba(175,221,255,.08);
+  --bg:#f4f5f7;--bg2:#ffffff;--bg3:#eceef1;--bg4:#e3e6ea;
+  --bdr:rgba(0,0,0,0.08);--bdr2:rgba(0,0,0,0.14);
+  --tx:#0a0d12;--tx2:rgba(10,13,18,0.66);--tx3:rgba(10,13,18,0.4);
+  --ac:#1a6fd4;--ac2:#0d5bb8;--acg:rgba(26,111,212,.08);
+  --ac-rgb:26,111,212;
+  --fg-rgb:0,0,0;
+  --bg-rgb:255,255,255;
+  --grn:#1a8c5a;--red:#c0392b;--amb:#b86c0a;--pur:#5b4fc7;--pnk:#b83c62;
 }
 
 /* ─── Base ─── */
@@ -55,8 +62,8 @@ body{
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar{width:3px;height:3px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
-::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.2)}
+::-webkit-scrollbar-thumb{background:rgba(var(--fg-rgb),.1)}
+::-webkit-scrollbar-thumb:hover{background:rgba(var(--fg-rgb),.2)}
 
 /* ══════════════════════════════════════════════════════════════
    KEYFRAMES
@@ -85,8 +92,8 @@ body{
   100%{transform:translateY(100vh)}
 }
 @keyframes pulseAc{
-  0%,100%{box-shadow:0 0 0 0 rgba(175,221,255,0)}
-  50%    {box-shadow:0 0 0 4px rgba(175,221,255,0.08)}
+  0%,100%{box-shadow:0 0 0 0 rgba(var(--ac-rgb),0)}
+  50%    {box-shadow:0 0 0 4px rgba(var(--ac-rgb),0.08)}
 }
 @keyframes counterUp{
   from{opacity:0;transform:translateY(8px)}
@@ -135,7 +142,7 @@ body{
 }
 #pw-input:focus{
   border-color:var(--ac);
-  box-shadow:0 0 0 1px rgba(175,221,255,.15);
+  box-shadow:0 0 0 1px rgba(var(--ac-rgb),.15);
 }
 #pw-input::placeholder{color:var(--tx3);letter-spacing:.1em}
 #pw-btn{
@@ -164,7 +171,7 @@ body{
    HEADER
 ══════════════════════════════════════════════════════════════ */
 .header{
-  background:rgba(0,0,0,.92);border-bottom:1px solid var(--bdr);
+  background:rgba(var(--bg-rgb),.92);border-bottom:1px solid var(--bdr);
   padding:16px 28px;display:flex;align-items:center;gap:14px;
   position:sticky;top:0;z-index:100;
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
@@ -183,7 +190,7 @@ body{
 .badge{
   font-size:9px;padding:2px 8px;font-weight:600;
   background:var(--acg);color:var(--ac);
-  border:1px solid rgba(175,221,255,.18);
+  border:1px solid rgba(var(--ac-rgb),.18);
   letter-spacing:.08em;text-transform:uppercase;
   transition:background .2s,border-color .2s;
 }
@@ -202,7 +209,7 @@ body{
 .container{max-width:1440px;margin:0 auto;padding:24px 28px;position:relative}
 .container::before{
   content:'';position:fixed;top:0;bottom:0;left:28px;
-  width:1px;background:rgba(255,255,255,.02);pointer-events:none;z-index:0;
+  width:1px;background:rgba(var(--fg-rgb),.02);pointer-events:none;z-index:0;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -308,11 +315,11 @@ body{
 }
 .card::after{
   content:'';position:absolute;top:0;left:0;right:0;
-  height:1px;background:linear-gradient(90deg,transparent,rgba(175,221,255,.12),transparent);
+  height:1px;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.12),transparent);
   opacity:0;transition:opacity .3s;
 }
 .card:hover::after{opacity:1}
-.card:hover{border-color:rgba(255,255,255,.1)}
+.card:hover{border-color:rgba(var(--fg-rgb),.1)}
 
 .chart-row{
   display:grid;grid-template-columns:1fr 1fr;
@@ -350,7 +357,7 @@ body{
 .fb:hover{color:var(--tx2);border-color:var(--bdr2)}
 .fb:active{transform:scale(0.97)}
 .fb.active{
-  background:var(--acg);border-color:rgba(175,221,255,.3);
+  background:var(--acg);border-color:rgba(var(--ac-rgb),.3);
   color:var(--ac);font-weight:500;
 }
 
@@ -378,17 +385,17 @@ body{
 .tbl tr.sec td{
   font-size:9px;font-weight:600;text-transform:uppercase;
   letter-spacing:.08em;color:var(--ac);
-  background:rgba(175,221,255,.04);
-  padding:8px 10px 6px;border-bottom:1px solid rgba(175,221,255,.07);
-  border-top:1px solid rgba(175,221,255,.07);
+  background:rgba(var(--ac-rgb),.04);
+  padding:8px 10px 6px;border-bottom:1px solid rgba(var(--ac-rgb),.07);
+  border-top:1px solid rgba(var(--ac-rgb),.07);
 }
-.tbl tbody tr:hover:not(.bold):not(.sec) td{background:rgba(255,255,255,.025)}
+.tbl tbody tr:hover:not(.bold):not(.sec) td{background:rgba(var(--fg-rgb),.05)}
 .neg{color:var(--red)!important}
 .pos{color:var(--grn)!important}
 
 /* ── Treasury clickable rows ── */
 .clickable{cursor:pointer}
-.clickable:hover td{background:rgba(175,221,255,.05)!important}
+.clickable:hover td{background:rgba(var(--ac-rgb),.05)!important}
 .clickable td{transition:background .15s var(--ease-std)}
 
 /* ── Sortable headers ── */
@@ -454,22 +461,31 @@ th.sortable:hover{color:var(--ac)}
 }
 .search-inp:focus{
   border-color:var(--ac);
-  box-shadow:0 0 0 1px rgba(175,221,255,.12);
+  box-shadow:0 0 0 1px rgba(var(--ac-rgb),.12);
 }
 .search-inp::placeholder{color:var(--tx3)}
 
 /* ══════════════════════════════════════════════════════════════
-   BLACK STRIPE BADGE
+   BLACK STRIPE DATA-LAG NOTICE
 ══════════════════════════════════════════════════════════════ */
+.bsd-notice{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 18px;margin-bottom:16px;
+  background:rgba(240,160,78,.07);
+  border:1px solid rgba(240,160,78,.28);
+  border-left:3px solid var(--amb);
+}
+.bsd-notice .bsd-txt{
+  display:flex;flex-direction:column;gap:2px;
+}
+.bsd-notice .bsd-label{
+  font-size:9px;font-weight:700;color:var(--amb);
+  text-transform:uppercase;letter-spacing:.1em;
+}
 #panel-bsd [id="bsd-stamp"],
 [id="bsd-stamp"]{
-  background:var(--acg)!important;
-  color:var(--ac)!important;
-  border:1px solid rgba(175,221,255,.15)!important;
-  border-radius:0!important;
-  font-size:9px!important;
-  padding:3px 10px!important;
-  letter-spacing:.07em!important;
+  font-size:13px!important;font-weight:500!important;
+  color:var(--tx)!important;letter-spacing:.01em!important;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -516,10 +532,10 @@ th.sortable:hover{color:var(--ac)}
 }
 
 /* ── Ripple on clicks ── */
-.fb-ripple{position:absolute;border-radius:50%;background:rgba(175,221,255,.18);width:0;height:0;transform:translate(-50%,-50%);animation:rippleOut .55s cubic-bezier(0.16,1,0.3,1) forwards;pointer-events:none;z-index:0}
+.fb-ripple{position:absolute;border-radius:50%;background:rgba(var(--ac-rgb),.18);width:0;height:0;transform:translate(-50%,-50%);animation:rippleOut .55s cubic-bezier(0.16,1,0.3,1) forwards;pointer-events:none;z-index:0}
 @keyframes rippleOut{to{width:150px;height:150px;opacity:0}}
 /* ── KPI hover value glow ── */
-.kpi:hover .val.pos{text-shadow:0 0 24px rgba(175,221,255,.28);transition:text-shadow .3s}
+.kpi:hover .val.pos{text-shadow:0 0 24px rgba(var(--ac-rgb),.28);transition:text-shadow .3s}
 .kpi:hover .val.neg{text-shadow:0 0 24px rgba(224,92,92,.2);transition:text-shadow .3s}
 /* ── Table row entrance ── */
 .tbl tbody tr{animation:fadeIn .3s cubic-bezier(0.16,1,0.3,1) both}
@@ -530,7 +546,6 @@ th.sortable:hover{color:var(--ac)}
 <div id="pw-screen">
   <div style="text-align:center">
     <h1>Manarat Holding</h1>
-    <p>Financial Dashboard · July 2026</p>
     <input id="pw-input" type="password" placeholder="ENTER PASSWORD" onkeydown="if(event.key==='Enter')checkPw()"><br>
     <button id="pw-btn" onclick="checkPw()" style="margin-top:12px">Unlock Dashboard</button>
     <div id="pw-err"></div>
@@ -718,7 +733,12 @@ th.sortable:hover{color:var(--ac)}
 
 <!-- BLACK STRIPE -->
 <div class="panel" id="panel-bsd">
-  <div style="display:inline-block;font-size:9px;padding:2px 8px;background:rgba(175,221,255,.04);color:var(--ac);border:1px solid rgba(175,221,255,.15);margin-bottom:14px;text-transform:uppercase;letter-spacing:.06em"><span id="bsd-stamp">📅 2026 YTD figures are as of 31st July 2026</span></div>
+  <div class="bsd-notice">
+    <div class="bsd-txt">
+      <span class="bsd-label">Data currency notice</span>
+      <span id="bsd-stamp">📅 2026 YTD figures are as of 31st July 2026</span>
+    </div>
+  </div>
   <div class="fbar" style="margin-bottom:14px"><span>Branch:</span>
     <button class="fb active" onclick="bsdBranchFilter('all',this)">All branches</button>
     <button class="fb" onclick="bsdBranchFilter('Liwan',this)">Liwan</button>
